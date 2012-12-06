@@ -1,12 +1,16 @@
 #ifndef CALCULATOR_HPP_INC
 #define CALCULATOR_HPP_INC
 
+class View;
+
 class Calculator
 {
   public:
-    Calculator();
+    Calculator(View &);
     ~Calculator();
-    int add( int a, int b );
+    void add( int a, int b );
+  private:
+    View & m_view;
 };
 
 #endif

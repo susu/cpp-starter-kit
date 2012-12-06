@@ -1,13 +1,16 @@
 #include <Calculator.hpp>
 
-Calculator::Calculator()
+#include <View.hpp>
+
+Calculator::Calculator(View & view)
+  : m_view(view)
 {}
 
 Calculator::~Calculator()
 {}
 
-int
+void
 Calculator::add(int lhs, int rhs)
 {
-  return lhs + rhs;
+  m_view.display(lhs+rhs);
 }

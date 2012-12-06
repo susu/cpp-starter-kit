@@ -1,6 +1,6 @@
 include_rules
 
-CXXFLAGS+= -Iigloo/
+CXXFLAGS+= -Iigloo/ -Iturtle/include/
 
 : test_runner.cpp |> !cxx |> %B.o {testobj}
 
