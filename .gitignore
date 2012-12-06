@@ -1,0 +1,5 @@
+*.o
+*.d
+*.so
+.tup
+test_runner

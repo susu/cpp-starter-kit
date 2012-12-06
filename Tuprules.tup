@@ -1,0 +1,18 @@
+
+CC=g++
+CXXFLAGS+= -Wall -Werror -std=c++11 -pthread
+
+INCLUDE= ../include
+SRC= ../src
+TST= ../test
+BUILD= ../build
+
+LD_PATH= ../src
+
+TARGETLIB=calculator
+TARGETLIB_SO=libcalculator.so
+
+!cxx = |> $(CC) -fPIC $(CXXFLAGS) -I$(INCLUDE) -c %f -o %o |>
+!o2shared = |> $(CC) -shared %f -o %o |>
+
+!o2bin = |> $(CC) %f -L$(LD_PATH) -l$(TARGETLIB) -o %o |>
