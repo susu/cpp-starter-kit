@@ -6,6 +6,9 @@
 
 MOCK_BASE_CLASS( ViewMock, View )
 {
+  ViewMock(std::ostream & o)
+    : View(o)
+  {}
   MOCK_METHOD( display, 1 );
 };
 
@@ -14,7 +17,8 @@ using namespace igloo;
 Context(a_calculator)
 {
   a_calculator()
-    : subject(view)
+    : view(std::cout)
+    , subject(view)
   {}
 
   Spec(should_add_two_integers)
