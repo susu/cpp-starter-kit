@@ -1,6 +1,7 @@
 
 CC=g++
 CXXFLAGS+= -Wall -Werror -std=c++11 -pthread
+GCOV=gcov
 
 INCLUDE= ../include
 SRC= ../src
@@ -11,10 +12,24 @@ LD_PATH= ../src
 
 LDFLAGS=
 
+ifeq (@(OPTIMIZATION),y)
+  CXXFLAGS+= -O2
+endif
+
+ifeq (@(COV_ENABLE),y)
+  CXXFLAGS+= --coverage
+  LDFLAGS+= --coverage
+  GCNO_OUT=%B.gcno
+endif
+
+
 TARGETLIB=calculator
 TARGETLIB_SO=lib$(TARGETLIB).so
 
-!cxx = |> $(CC) -fPIC $(CXXFLAGS) -I$(INCLUDE) -c %f -o %o |>
-!o2shared = |> $(CC) -shared %f -o %o |>
+!cxx = |> ^c^ $(CC) -fPIC $(CXXFLAGS) -I$(INCLUDE) -c %f -o %o |>
+!o2shared = |> $(CC) $(LDFLAGS) -shared %f -o %o |>
 
 !o2bin = |> $(CC) %f $(LDFLAGS) -o %o |>
+
+!gcov =|> $(GCOV) %f |>
+

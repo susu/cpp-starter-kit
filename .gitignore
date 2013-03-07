@@ -3,3 +3,5 @@
 *.so
 .tup
 test_runner
+*.gcno
+*.gcda
