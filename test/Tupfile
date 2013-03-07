@@ -4,6 +4,8 @@ CXXFLAGS+= -Iigloo/
 
 : test_runner.cpp |> !cxx |> %B.o {testobj}
 
-: {testobj} $(LD_PATH)/$(TARGETLIB_SO) |> !o2bin |> test_runner
+LDFLAGS+= -l$(TARGETLIB) -L$(LD_PATH)
+
+: {testobj} | $(LD_PATH)/$(TARGETLIB_SO) |> !o2bin |> test_runner
 
 : test_runner |> LD_LIBRARY_PATH=$(LD_PATH) ./test_runner |>

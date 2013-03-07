@@ -9,10 +9,12 @@ BUILD= ../build
 
 LD_PATH= ../src
 
+LDFLAGS=
+
 TARGETLIB=calculator
-TARGETLIB_SO=libcalculator.so
+TARGETLIB_SO=lib$(TARGETLIB).so
 
 !cxx = |> $(CC) -fPIC $(CXXFLAGS) -I$(INCLUDE) -c %f -o %o |>
 !o2shared = |> $(CC) -shared %f -o %o |>
 
-!o2bin = |> $(CC) %f -L$(LD_PATH) -l$(TARGETLIB) -o %o |>
+!o2bin = |> $(CC) %f $(LDFLAGS) -o %o |>
